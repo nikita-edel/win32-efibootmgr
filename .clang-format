@@ -1,0 +1,6 @@
+BasedOnStyle: Google
+UseTab: Always
+IndentWidth: 4
+TabWidth: 4
+IndentPPDirectives: BeforeHash
+Cpp11BracedListStyle: false
