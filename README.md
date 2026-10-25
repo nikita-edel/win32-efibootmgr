@@ -26,15 +26,14 @@ efibootmgr -c -d \\.\PhysicalDrive0 -p 1 -l \EFI\ubuntu\shimx64.efi -L ubuntu
 Boot numbers are hex. Partition numbers are 1-based. `-h` for full help.
 
 ## Build
-
-MSVC or MinGW:
+Need a C Compiler
 
 ```
 cmake -B build
 cmake --build build
 ```
 
-For mingw (to compile from e.g. linux)
+For the mingw toolchain (to compile from e.g. linux)
 ```
 cmake -B build -DCMAKE_TOOLCHAIN_FILE=cmake/toolchain-mingw64.cmake
 cmake --build build
