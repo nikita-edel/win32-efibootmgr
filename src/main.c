@@ -13,6 +13,11 @@
 	#define VERSION "dev"
 #endif
 
+static const wchar_t about[] =
+	L"win32-efibootmgr " VERSION
+	L"\nAuthor: Nikita Edel\n"
+	L"https://github.com/nikita-edel/win32-efibootmgr\n";
+
 static void winerr(const wchar_t* ctx) {
 	DWORD e = GetLastError();
 	wchar_t msg[256] = { 0 };
@@ -317,8 +322,9 @@ static void usage(const wchar_t* prog) {
 		L"  -V, --version              Show version\n"
 		L"  -h, --help                 Show this help\n"
 		L"\n"
-		L"Requires Administrator privileges and UEFI firmware (Windows 8+).\n",
-		prog);
+		L"Requires Administrator privileges and UEFI firmware (Windows 8+).\n"
+		L"\n%ls",
+		prog, about);
 }
 
 static bool opt(const wchar_t* arg, const wchar_t* s, const wchar_t* l) {
@@ -397,7 +403,7 @@ int wmain(int argc, wchar_t* argv[]) {
 		} else if (opt(arg, L"-L", L"--label")) {
 			TAKE(label);
 		} else if (opt(arg, L"-V", L"--version")) {
-			wprintf(L"win32-efibootmgr %hs\n", VERSION);
+			wprintf(L"%ls", about);
 			return 0;
 		} else if (opt(arg, L"-h", L"--help")) {
 			usage(argv[0]);

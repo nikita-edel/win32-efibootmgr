@@ -35,7 +35,7 @@ cmake --build build
 
 For the mingw toolchain (to compile from e.g. linux)
 ```
-cmake -B build -DCMAKE_TOOLCHAIN_FILE=cmake/toolchain-mingw64.cmake
+cmake -B build -DCMAKE_TOOLCHAIN_FILE="cmake/toolchain-mingw64.cmake"
 cmake --build build
 ```
 
