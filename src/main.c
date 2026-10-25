@@ -9,6 +9,10 @@
 #include "dp.h"
 #include "efi_vars.h"
 
+#ifndef VERSION
+	#define VERSION "dev"
+#endif
+
 static void winerr(const wchar_t* ctx) {
 	DWORD e = GetLastError();
 	wchar_t msg[256] = { 0 };
@@ -310,6 +314,7 @@ static void usage(const wchar_t* prog) {
 		L"\\EFI\\ubuntu\\shimx64.efi)\n"
 		L"  -L, --label NAME           Boot entry description\n"
 		L"\n"
+		L"  -V, --version              Show version\n"
 		L"  -h, --help                 Show this help\n"
 		L"\n"
 		L"Requires Administrator privileges and UEFI firmware (Windows 8+).\n",
@@ -391,6 +396,9 @@ int wmain(int argc, wchar_t* argv[]) {
 			TAKE(loader);
 		} else if (opt(arg, L"-L", L"--label")) {
 			TAKE(label);
+		} else if (opt(arg, L"-V", L"--version")) {
+			wprintf(L"win32-efibootmgr %hs\n", VERSION);
+			return 0;
 		} else if (opt(arg, L"-h", L"--help")) {
 			usage(argv[0]);
 			return 0;

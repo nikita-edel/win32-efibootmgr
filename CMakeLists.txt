@@ -4,7 +4,7 @@ if(NOT DEFINED CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE Release CACHE STRING "Build type")
 endif()
 
-project(efibootmgr LANGUAGES C)
+project(efibootmgr VERSION 0.1.0 LANGUAGES C)
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
@@ -26,6 +26,7 @@ target_compile_definitions(efibootmgr PRIVATE
     WIN32_LEAN_AND_MEAN
     UNICODE
     _UNICODE
+    VERSION="${PROJECT_VERSION}"
     _WIN32_WINNT=0x0602
     NTDDI_VERSION=0x06020000
 )
