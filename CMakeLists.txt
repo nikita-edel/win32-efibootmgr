@@ -1,4 +1,9 @@
 cmake_minimum_required(VERSION 3.16)
+
+if(NOT DEFINED CMAKE_BUILD_TYPE)
+    set(CMAKE_BUILD_TYPE Release CACHE STRING "Build type")
+endif()
+
 project(efibootmgr LANGUAGES C)
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
@@ -29,8 +34,9 @@ target_link_libraries(efibootmgr PRIVATE kernel32)
 
 if(MSVC)
     target_compile_options(efibootmgr PRIVATE /W4 /wd4100)
+
 elseif(CMAKE_C_COMPILER_ID MATCHES "GNU|Clang" AND
        (MINGW OR MSYS OR CMAKE_CROSSCOMPILING))
     target_compile_options(efibootmgr PRIVATE -Wall -Wextra -Wno-unused-parameter)
-    target_link_options(efibootmgr PRIVATE -municode)
+    target_link_options(efibootmgr PRIVATE -municode $<$<CONFIG:Release>:-s>)
 endif()

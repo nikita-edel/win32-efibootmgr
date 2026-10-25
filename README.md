@@ -34,8 +34,7 @@ cmake -B build
 cmake --build build
 ```
 
-Cross-compile from Linux:
-
+For mingw (to compile from e.g. linux)
 ```
 cmake -B build -DCMAKE_TOOLCHAIN_FILE=cmake/toolchain-mingw64.cmake
 cmake --build build
