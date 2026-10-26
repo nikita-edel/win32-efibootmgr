@@ -30,13 +30,13 @@ Need a C Compiler
 
 ```
 cmake -B build
-cmake --build build
+cmake --build build --config Release
 ```
 
 For the mingw toolchain (to compile from e.g. linux)
 ```
-cmake -B build -DCMAKE_TOOLCHAIN_FILE="cmake/toolchain-mingw64.cmake"
-cmake --build build
+cmake -B build -DCMAKE_TOOLCHAIN_FILE="cmake/toolchain-mingw64.cmake" -G "MinGW Makefiles"
+cmake --build build --config Release
 ```
 
 Use `-DMINGW_PREFIX=<triple>` if the toolchain isn't `x86_64-w64-mingw32`.
